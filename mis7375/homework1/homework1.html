@@ -22,7 +22,37 @@ Description: Patient registration form for Bayou City Family Health.
   <div id="main">
     <form action="thankyou.html">
       <table>
-        
+        <!-- Name row: first name, middle initial, last name -->
+        <tr>
+          <td><label for="first_name">First Name</label></td>
+          <td>
+            <input type="text"
+              id="first_name"
+              name="first_name"
+              size="20"
+              maxlength="30"
+              placeholder="First name"
+              required>
+          </td>
+          <td><label for="middle_initial">MI</label></td>
+          <td>
+            <input type="text"
+              id="middle_initial"
+              name="middle_initial"
+              size="1"
+              maxlength="1">
+          </td>
+          <td><label for="last_name">Last Name</label></td>
+          <td>
+            <input type="text"
+              id="last_name"
+              name="last_name"
+              size="20"
+              maxlength="30"
+              placeholder="Last name"
+              required>
+          </td>
+        </tr>
       </table>
     </form>
   </div>
