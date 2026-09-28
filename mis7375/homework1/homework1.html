@@ -66,7 +66,7 @@ Description: Patient registration form for Bayou City Family Health.
               required>
           </td>
         </tr>
-        <!-- Social Security number row (test values only) -->
+        <!-- Social Security number row -->
         <tr>
           <td><label for="ssn">Social Security Number</label></td>
           <td>
@@ -78,6 +78,30 @@ Description: Patient registration form for Bayou City Family Health.
               maxlength="11"
               placeholder="Enter SSN"
               required>
+          </td>
+        </tr>
+        <!-- Address rows -->
+        <tr>
+          <td><label for="address_line1">Address Line 1</label></td>
+          <td>
+            <input type="text"
+              id="address_line1"
+              name="address_line1"
+              size="30"
+              maxlength="30"
+              placeholder="Street address"
+              required>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="address_line2">Address Line 2</label></td>
+          <td>
+            <input type="text"
+              id="address_line2"
+              name="address_line2"
+              size="30"
+              maxlength="30"
+              placeholder="Apt, suite, or unit">
           </td>
         </tr>
       </table>
