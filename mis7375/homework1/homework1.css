@@ -1,0 +1,121 @@
+/*
+Program name: homework1.css
+Author: Brian Nwabuoku
+Date created: 09/29/2026
+Date last edited: 09/29/2026
+Version: 1.0
+Description: External style sheet for the Bayou City Family Health patient registration form.
+*/
+
+/* Tag selector for the page background, font, and text color */
+body {
+  background-color: aliceblue;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 15px;
+  color: darkslategray;
+  margin: 0;
+}
+
+/* Tag selectors for the heading fonts and colors */
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: white;
+  margin: 0;
+}
+
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: lightcyan;
+  margin: 5px 0;
+}
+
+/* ID selector for the teal banner at the top */
+#header {
+  background-color: teal;
+  padding: 20px;
+  color: white;
+  overflow: auto;
+}
+
+/* ID selector that puts the logo on a white tile at the left of the banner */
+#logo {
+  float: left;
+  height: 90px;
+  margin-right: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* ID selector for today's date in the banner */
+#today {
+  font-weight: bold;
+}
+
+/* ID selector for the section that holds the form */
+#main {
+  padding: 20px;
+}
+
+/* Class selector for the white box around the form */
+.form {
+  background-color: white;
+  border: 1px solid lightsteelblue;
+  padding: 10px;
+}
+
+/* Tag selector that gives each table cell a little room */
+td {
+  padding: 6px;
+  vertical-align: middle;
+}
+
+/* Tag selectors so form fields use the page font, not the browser default */
+input,
+select,
+textarea {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Tag selector for the field labels */
+label {
+  color: darkslategray;
+}
+
+/* Name selector for the light tint on the symptoms box */
+textarea[name="symptoms"] {
+  background-color: ivory;
+}
+
+/* Type selector for the space between Clear and Submit */
+input[type="reset"] {
+  margin-right: 40px;
+}
+
+/* ID selector for the dark footer at the bottom of the page */
+#footer {
+  background-color: darkslategray;
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+/* Tag selectors for links and visited links */
+a {
+  color: teal;
+}
+
+a:visited {
+  color: purple;
+}
+
+/* ID and tag selectors together keep the footer links readable on the dark background */
+#footer a {
+  color: lightcyan;
+}
+
+#footer a:visited {
+  color: plum;
+}
