@@ -3,8 +3,8 @@ Program name: homework2.css
 Author: Brian Nwabuoku
 Date created: 10/21/2026
 Date last edited: 10/23/2026
-Version: 1.2
-Description: External style sheet for the Bayou City Family Health patient registration form, with styles for the required-fields note and the slider number.
+Version: 1.3
+Description: External style sheet for the Bayou City Family Health patient registration form, with styles for the error messages.
 */
 
 /* Tag selector for the page background, font, and text color */
@@ -96,6 +96,13 @@ input[type="reset"] {
 .note {
   font-style: italic;
   margin-top: 0;
+}
+
+/* Class selector for the red messages next to fields that need fixing */
+.error {
+  color: firebrick;
+  font-size: 13px;
+  display: block;
 }
 
 /* ID selector for the number shown next to the slider */
