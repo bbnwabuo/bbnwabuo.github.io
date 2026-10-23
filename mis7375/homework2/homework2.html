@@ -5,8 +5,8 @@ Program name: homework2.html
 Author: Brian Nwabuoku
 Date created: 10/21/2026
 Date last edited: 10/23/2026
-Version: 1.3
-Description: Patient registration form for Bayou City Family Health, built on Homework 1. It checks the name and contact fields when the patient leaves them and shows a message next to anything that needs fixing.
+Version: 1.4
+Description: Patient registration form for Bayou City Family Health, built on Homework 1. It checks each field and has a Review button that shows everything the patient entered before they submit.
 -->
 
 <html>
@@ -230,8 +230,10 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             maxlength="30"
             pattern="[A-Za-z][A-Za-z0-9_\-]{4,29}"
             placeholder="Choose a user ID"
-            title="5 to 30 characters. Start with a letter, then use letters, numbers, underscores, or dashes. No spaces."
+            title="5 to 30 characters. Start with a letter, then use letters, numbers, underscores, or dashes. No spaces. We'll save it in lowercase."
+            onblur="showresult('userid')"
             required>
+            <span id="userid_error" class="error"></span>
           </td>
         </tr>
         <!-- Password is typed twice so we can check that they match -->
@@ -246,8 +248,11 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             maxlength="30"
             pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])[^&quot;]{8,30}"
             placeholder="At least 8 characters"
-            title="8 to 30 characters with at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character like ! or #. No double quotes."
+            title="8 to 30 characters with at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character like ! or #. No double quotes, and it can't include your user ID or name."
+            oninput="showresult('password1')"
+            onblur="showresult('password1')"
             required>
+            <span id="password1_error" class="error"></span>
           </td>
         </tr>
         <tr>
@@ -261,7 +266,10 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             maxlength="30"
             placeholder="Re-enter password"
             title="Type the same password again so we know they match."
+            oninput="showresult('password2')"
+            onblur="showresult('password2')"
             required>
+            <span id="password2_error" class="error"></span>
           </td>
         </tr>
         <!-- Gender uses one name for the group and a numbered id for each button -->
@@ -287,6 +295,7 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             value="O"
             title="Pick the option that fits you.">
             <label for="gender3">Other</label>
+            <span id="gender_error" class="error"></span>
           </td>
         </tr>
         <!-- Vaccinations are saved as 1 for yes and 0 for no -->
@@ -306,6 +315,7 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             value="0"
             title="No if you're behind on any vaccinations.">
             <label for="vaccinated2">No</label>
+            <span id="vaccinated_error" class="error"></span>
           </td>
         </tr>
         <!-- Insurance is saved as 1 for yes and 0 for no -->
@@ -325,6 +335,7 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             value="0"
             title="No if you don't have health insurance.">
             <label for="insurance2">No</label>
+            <span id="insurance_error" class="error"></span>
           </td>
         </tr>
         <!-- Each medical history box is its own yes or no field -->
@@ -391,16 +402,23 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             cols="50"
             maxlength="500"
             placeholder="What brings you in today?"
-            title="Optional. Tell us what brings you in, up to 500 characters. Please don't use double quotes."></textarea>
+            title="Optional. Tell us what brings you in, up to 500 characters. Please don't use double quotes."
+            onblur="showresult('symptoms')"></textarea>
+            <span id="symptoms_error" class="error"></span>
           </td>
         </tr>
-        <!-- Clear resets the form, and Submit goes to the thank-you page -->
+        <!-- Review shows everything below the form, Clear resets it, and Submit goes to the thank-you page -->
         <tr>
           <td></td>
           <td>
             <input type="reset"
             value="Clear and Start Over"
             title="Clears every field so you can start over.">
+            <input type="button"
+            id="reviewbutton"
+            value="Review"
+            title="Checks your answers and shows them below so you can look them over."
+            onclick="reviewform()">
             <input type="submit"
             value="Submit"
             title="Sends your registration once everything checks out.">
@@ -408,6 +426,8 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
         </tr>
       </table>
     </form>
+    <!-- The review of what the patient entered shows up here -->
+    <div id="review"></div>
   </div>
   <!-- Footer with our address, contact, social links, and my homework files -->
   <div id="footer">

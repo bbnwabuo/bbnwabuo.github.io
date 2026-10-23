@@ -3,8 +3,8 @@ Program name: homework2.css
 Author: Brian Nwabuoku
 Date created: 10/21/2026
 Date last edited: 10/23/2026
-Version: 1.3
-Description: External style sheet for the Bayou City Family Health patient registration form, with styles for the error messages.
+Version: 1.4
+Description: External style sheet for the Bayou City Family Health patient registration form, with styles for the error messages and the Review section.
 */
 
 /* Tag selector for the page background, font, and text color */
@@ -87,9 +87,14 @@ textarea[name="symptoms"] {
   background-color: ivory;
 }
 
-/* Type selector for the space between Clear and Submit */
+/* Type selector for the space between Clear and the Review and Submit buttons */
 input[type="reset"] {
   margin-right: 40px;
+}
+
+/* ID selector for the Review button so it stands out a little */
+#reviewbutton {
+  margin-right: 10px;
 }
 
 /* Class selector for the note above the form */
@@ -109,6 +114,60 @@ input[type="reset"] {
 #healthvalue {
   font-weight: bold;
   margin-left: 10px;
+}
+
+/* ID selector for the Review section below the form */
+#review {
+  margin-top: 20px;
+}
+
+/* Tag selector inside the Review section for its heading */
+#review h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: teal;
+}
+
+/* Class selector for the review table so the columns line up */
+.reviewtable {
+  background-color: white;
+  border: 1px solid lightsteelblue;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+/* Tag selectors for the review table's headings and cells */
+.reviewtable th {
+  background-color: teal;
+  color: white;
+  text-align: left;
+  padding: 6px;
+}
+
+/* Class selector so the first heading lines up with the field names under it */
+.reviewhead th:first-child {
+  text-align: right;
+}
+
+.reviewtable td {
+  border-bottom: 1px solid lavender;
+  vertical-align: top;
+}
+
+/* Class selector for the field names in the review */
+.reviewlabel {
+  font-weight: bold;
+  text-align: right;
+}
+
+/* Class selectors for the pass and error results */
+.pass {
+  color: seagreen;
+  font-weight: bold;
+}
+
+.fail {
+  color: firebrick;
+  font-weight: bold;
 }
 
 /* ID selector for the dark footer at the bottom of the page */
