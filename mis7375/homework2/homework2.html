@@ -5,7 +5,7 @@ Program name: homework2.html
 Author: Brian Nwabuoku
 Date created: 10/21/2026
 Date last edited: 10/23/2026
-Version: 1.4
+Version: 1.5
 Description: Patient registration form for Bayou City Family Health, built on Homework 1. It checks each field and has a Review button that shows everything the patient entered before they submit.
 -->
 
@@ -27,7 +27,9 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
     <p class="note">Fields marked with * are required. Hover over any box to see what it needs.</p>
     <form id="signup"
       name="signup"
-      action="thankyou.html">
+      action="thankyou.html"
+      onsubmit="return checkall()"
+      onreset="startover()">
       <table class="form">
         <!-- First name, middle initial, and last name share one row -->
         <tr>

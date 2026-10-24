@@ -3,8 +3,8 @@ Program name: homework2.js
 Author: Brian Nwabuoku
 Date created: 10/21/2026
 Date last edited: 10/23/2026
-Version: 1.2
-Description: Checks the form, shows a message next to anything that needs fixing, and shows the patient's answers in Review.
+Version: 1.3
+Description: Checks the form, shows a message next to anything that needs fixing, shows the patient's answers in Review, and only lets Submit through when everything passes.
 I read form values by name, the same names in my data dictionary, and use IDs for the message spots, the review area, and the date.
 */
 
@@ -469,6 +469,27 @@ function reviewform() {
   }
   document.getElementById("review").innerHTML = output;
   return problems;
+}
+
+// Submit: runs the same checks and only sends the form when nothing is wrong
+function checkall() {
+  const problems = reviewform();
+  if (problems > 0) {
+    document.getElementById("review").scrollIntoView();
+    return false;
+  }
+  return true;
+}
+
+// Clear and Start Over: empties the review and every message
+function startover() {
+  document.getElementById("review").innerHTML = "";
+  const messages = document.querySelectorAll(".error");
+  for (let i = 0; i < messages.length; i++) {
+    messages[i].innerHTML = "";
+  }
+  // The form resets after this runs, so the slider number waits a moment before updating
+  setTimeout(showhealthscale, 0);
 }
 
 /* End of file: homework2.js */
