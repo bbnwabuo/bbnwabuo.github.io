@@ -1,0 +1,257 @@
+/*
+Program name: homework3.css
+Author: Brian Nwabuoku
+Date created: 11/11/2026
+Date last edited: 11/11/2026
+Version: 1.0
+Description: External style sheet for the Bayou City Family Health patient registration form. It saves a line under each field for its message so the form doesn't jump, and styles the status line, the Submit button, and the Review section.
+*/
+
+/* Tag selector for the page background, font, and text color */
+body {
+  background-color: aliceblue;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 15px;
+  color: darkslategray;
+  margin: 0;
+}
+
+/* Tag selectors for the heading fonts and colors */
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: white;
+  margin: 0;
+}
+
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: lightcyan;
+  margin: 5px 0;
+}
+
+/* ID selector for the teal banner at the top */
+#header {
+  background-color: teal;
+  padding: 20px;
+  color: white;
+  overflow: auto;
+}
+
+/* ID selector that puts the logo on a white tile at the left of the banner */
+#logo {
+  float: left;
+  height: 90px;
+  margin-right: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* ID selector for today's date in the banner */
+#today {
+  font-weight: bold;
+}
+
+/* ID selector for the section that holds the form */
+#main {
+  padding: 20px;
+}
+
+/* Class selector for the white box around the form, with a set width so the columns stay put */
+.form {
+  background-color: white;
+  border: 1px solid lightsteelblue;
+  padding: 10px;
+  width: 1000px;
+  table-layout: fixed;
+}
+
+/* Class and tag selectors together set the width of the label column */
+.form td:first-child {
+  width: 230px;
+}
+
+/* Tag selector that gives each table cell a little room */
+td {
+  padding: 6px 6px 2px 6px;
+  vertical-align: top;
+}
+
+/* Tag selectors so form fields use the page font, not the browser default */
+input,
+select,
+textarea {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Tag selector for the field labels */
+label {
+  color: darkslategray;
+}
+
+/* Pseudo-class selectors that light up the box the patient is in */
+input:focus,
+select:focus,
+textarea:focus {
+  background-color: lightyellow;
+  outline: 2px solid teal;
+}
+
+/* Name selector for the light tint on the symptoms box */
+textarea[name="symptoms"] {
+  background-color: ivory;
+}
+
+/* Type selectors that give all three buttons the same look and height, so the row doesn't move when Submit shows up */
+input[type="reset"],
+input[type="button"],
+input[type="submit"] {
+  background-color: whitesmoke;
+  border: 1px solid darkslategray;
+  border-radius: 4px;
+  padding: 4px 12px;
+}
+
+/* Type selector for the space between Clear and the Review and Validate and Submit buttons */
+input[type="reset"] {
+  margin-right: 40px;
+}
+
+/* ID selector for the Review and Validate button so it stands out a little */
+#reviewbutton {
+  margin-right: 10px;
+}
+
+/* ID selector for the Submit button, which only shows up after everything passes */
+#submitbutton {
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+}
+
+/* ID selector for the line under the buttons that says where things stand */
+#formstatus {
+  font-size: 13px;
+}
+
+/* Class selector for the note above the form */
+.note {
+  font-style: italic;
+  margin-top: 0;
+}
+
+/* Class selector that saves one line under each field for its message, so the form doesn't jump */
+.messages {
+  min-height: 18px;
+  font-size: 13px;
+}
+
+/* Class selector for rows with three boxes, which save two lines since they can have more to say */
+.twolines {
+  min-height: 36px;
+}
+
+/* Class selector for the red messages under fields that need fixing */
+.error {
+  color: firebrick;
+  font-size: 13px;
+  margin-right: 12px;
+}
+
+/* Pseudo-class selector so an empty message spot doesn't push the next message over */
+.error:empty {
+  display: none;
+}
+
+/* Type selector that lines the slider up with the words on each side of it */
+input[type="range"] {
+  vertical-align: middle;
+}
+
+/* ID selector for the number shown next to the slider */
+#healthvalue {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* ID selector for the Review section below the form */
+#review {
+  margin-top: 20px;
+}
+
+/* Tag selector inside the Review section for its heading */
+#review h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: teal;
+}
+
+/* Class selector for the review table so the columns line up */
+.reviewtable {
+  background-color: white;
+  border: 1px solid lightsteelblue;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+/* Tag selectors for the review table's headings and cells */
+.reviewtable th {
+  background-color: teal;
+  color: white;
+  text-align: left;
+  padding: 6px;
+}
+
+/* Class selector so the first heading lines up with the field names under it */
+.reviewhead th:first-child {
+  text-align: right;
+}
+
+.reviewtable td {
+  border-bottom: 1px solid lavender;
+  vertical-align: top;
+}
+
+/* Class selector for the field names in the review */
+.reviewlabel {
+  font-weight: bold;
+  text-align: right;
+}
+
+/* Class selectors for the pass and error results */
+.pass {
+  color: seagreen;
+  font-weight: bold;
+}
+
+.fail {
+  color: firebrick;
+  font-weight: bold;
+}
+
+/* ID selector for the dark footer at the bottom of the page */
+#footer {
+  background-color: darkslategray;
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+/* Tag selectors for links and visited links */
+a {
+  color: teal;
+}
+
+a:visited {
+  color: purple;
+}
+
+/* ID and tag selectors together keep the footer links readable on the dark background */
+#footer a {
+  color: lightcyan;
+}
+
+#footer a:visited {
+  color: plum;
+}
