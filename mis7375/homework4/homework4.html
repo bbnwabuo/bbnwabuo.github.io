@@ -4,9 +4,9 @@
 Program name: homework4.html
 Author: Brian Nwabuoku
 Date created: 11/23/2026
-Date last edited: 11/23/2026
-Version: 1.0
-Description: Patient registration form for Bayou City Family Health, built on Homework 3, that remembers returning patients.
+Date last edited: 11/25/2026
+Version: 1.1
+Description: Patient registration form for Bayou City Family Health that remembers five fields for returning patients.
 -->
 
 <html>
@@ -34,7 +34,7 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
       name="signup"
       action="thankyou.html"
       oninput="formchanged(event)"
-      onsubmit="return checkall()"
+      onsubmit="event.preventDefault(); checkall(this)"
       onreset="startover()">
       <table class="form">
         <!-- First name, middle initial, and last name share one row -->
@@ -457,7 +457,7 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             </div>
           </td>
         </tr>
-        <!-- Remember Me is checked to start, and unchecking it forgets the name cookie and everything saved on this computer -->
+        <!-- Remember Me is checked to start, and unchecking it clears the name cookie and saved fields -->
         <tr>
           <td>Remember Me</td>
           <td>
@@ -465,10 +465,12 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             id="rememberme"
             name="rememberme"
             value="1"
-            title="Keep this checked to have us remember your first name and answers on this computer for 48 hours. Uncheck it to forget them."
+            title="Only your first name, last name, city, state, and ZIP code are remembered in this browser. Uncheck this box to forget them."
             onchange="rememberchanged()"
             checked>
-            <label for="rememberme">Remember my name and answers on this computer</label>
+            <label for="rememberme">
+              Remember my first name, last name, city, state, and ZIP code in this browser
+            </label>
           </td>
         </tr>
         <!-- Review and Validate checks everything and shows it below the form, and Submit stays hidden until it all passes -->
@@ -486,7 +488,7 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
             <input type="submit"
             id="submitbutton"
             value="Submit"
-            title="Sends your registration. It only shows up after Review and Validate finds nothing wrong."
+            title="Opens the thank-you page after Review and Validate finds nothing wrong."
             hidden
             disabled>
             <div class="messages">
@@ -511,24 +513,11 @@ Description: Patient registration form for Bayou City Family Health, built on Ho
         loading="lazy"></iframe>
     </div>
   </div>
-  <!-- Footer with our address, contact, social links, and my homework files -->
-  <div id="footer">
-    <p>Thank you for visiting Bayou City Family Health.</p>
-    <p>
-      4444 Cullen Boulevard<br>
-      Houston, TX 77004
-    </p>
-    <p>
-      <a href="#">Contact Us</a> |
-      <a href="https://www.linkedin.com/in/briannwabuoku">LinkedIn</a> |
-      <a href="https://www.uh.edu">University of Houston</a>
-    </p>
-    <p>
-      <a href="../homework3/mis7375-homework3-data-dictionary.xlsx">Data Dictionary</a> |
-      <a href="../homework1/mis7375-homework1-diagram.png">Form Diagram</a>
-    </p>
-    <p>&copy; 2026 Brian Nwabuoku</p>
-  </div>
+  <!-- The footer loads as its own page below the form and map -->
+  <iframe
+    id="footerframe"
+    src="homework4-footer.html"
+    title="Bayou City Family Health footer"></iframe>
   <!-- The bottom bar stays fixed on screen and shows how much time is left on the form -->
   <div id="footerbar">
     Bayou City Family Health |

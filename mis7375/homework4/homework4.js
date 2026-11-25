@@ -2,9 +2,9 @@
 Program name: homework4.js
 Author: Brian Nwabuoku
 Date created: 11/23/2026
-Date last edited: 11/23/2026
-Version: 1.0
-Description: Checks the form like Homework 3, loads the state list, and remembers returning patients.
+Date last edited: 11/25/2026
+Version: 1.1
+Description: Checks the form, loads the state list, and remembers five fields for returning patients.
 I read form values by name, the same names in my data dictionary, and use IDs for the message spots, the review area, the status line, the bars, and the date.
 */
 
@@ -21,8 +21,8 @@ const cookiehours = 48;
 // Saved answers go in local storage under this start, so they're easy to find and remove
 const savestart = "bcfh_";
 
-// The fields that are never saved on the computer because they're secret
-const securefields = ["ssn", "password1", "password2"];
+// These are the only fields Remember Me saves in this browser
+const savedfields = ["firstname", "lastname", "city", "state", "zip"];
 
 // The form clears after 10 minutes without any typing or clicking, with a warning 60 seconds before
 const formseconds = 600;
@@ -31,6 +31,7 @@ let secondsleft = formseconds;
 
 // Runs when the page opens to start the clock and timer, load the states, and welcome the patient
 async function startform() {
+  forgetanswers(true);
   showclock();
   setInterval(showclock, 1000);
   setInterval(countdown, 1000);
@@ -80,14 +81,14 @@ function cleantext(text) {
     .replace(/"/g, "&quot;");
 }
 
-// Cleans up a box when the patient leaves it, so the box shows what we'll actually save
+// Cleans up the value shown in a box when the patient leaves it
 function tidy(name) {
   if (!textfields.includes(name)) {
     return;
   }
   const box = field(name);
   let value = box.value.trim();
-  // Email and user ID are always saved in lowercase
+  // Shows email and user ID in lowercase
   if (name == "email" || name == "userid") {
     value = value.toLowerCase();
   }
@@ -516,55 +517,36 @@ function startnewuser() {
   shownewuser();
 }
 
-// Saves one field's answer in local storage, unless it's secret or Remember Me is off
+// Saves the field only if it's on the list and Remember Me is on
 function savefield(name) {
-  if (!field("rememberme").checked || securefields.includes(name) || (!checks[name] && !savedboxes.includes(name))) {
+  if (!field("rememberme").checked || !savedfields.includes(name)) {
     return;
   }
-  let value = field(name).value;
-  if (field(name).type == "checkbox") {
-    value = field(name).checked ? "1" : "0";
-  }
-  localStorage.setItem(savestart + name, value);
+  localStorage.setItem(savestart + name, field(name).value);
 }
 
-// The check boxes and the slider are saved too, even though they don't have a check of their own
-const savedboxes = ["asthma", "diabetes", "bloodpressure", "heartdisease", "allergies", "healthscale"];
-
-// Saves every answer that isn't secret, used when Remember Me is checked again
+// Saves the five fields when Remember Me is checked or the patient submits
 function saveall() {
-  for (const name in checks) {
+  for (const name of savedfields) {
     savefield(name);
   }
-  for (let i = 0; i < savedboxes.length; i++) {
-    savefield(savedboxes[i]);
-  }
 }
 
-// Puts the saved answers back in the form when the patient comes back
+// Puts only the five saved fields back after the patient confirms it's them
 function loadanswers() {
-  const names = Object.keys(checks).concat(savedboxes);
-  for (let i = 0; i < names.length; i++) {
-    const saved = localStorage.getItem(savestart + names[i]);
-    if (saved == null || securefields.includes(names[i])) {
-      continue;
-    }
-    const box = field(names[i]);
-    if (box.type == "checkbox") {
-      box.checked = saved == "1";
-    } else {
-      // Radio groups take the saved value and check the matching button
-      box.value = saved;
+  for (const name of savedfields) {
+    const saved = localStorage.getItem(savestart + name);
+    if (saved != null) {
+      field(name).value = saved;
     }
   }
 }
 
-// Removes every saved answer for this form from local storage
-function forgetanswers() {
-  const keys = Object.keys(localStorage);
-  for (let i = 0; i < keys.length; i++) {
-    if (keys[i].indexOf(savestart) == 0) {
-      localStorage.removeItem(keys[i]);
+// Clears this form's saved values, or just the old fields when the page loads
+function forgetanswers(keepsaved = false) {
+  for (const key of Object.keys(localStorage)) {
+    if (key.startsWith(savestart) && (!keepsaved || !savedfields.includes(key.slice(savestart.length)))) {
+      localStorage.removeItem(key);
     }
   }
 }
@@ -656,7 +638,7 @@ function checknow(name) {
   }
 }
 
-// Runs when the patient leaves a field to clean it up, check it, show the result under it, and save it
+// Checks the field when the patient leaves it and saves it if Remember Me allows it
 function showresult(name) {
   tidy(name);
   checknow(name);
@@ -671,10 +653,6 @@ function formchanged(event) {
   // A change means the last check is out of date, so Submit goes away until they validate again
   lockform();
   const name = event.target.name;
-  // Check boxes and the slider are saved as soon as they change
-  if (savedboxes.includes(name)) {
-    savefield(name);
-  }
   // Fields with their own oninput already checked themselves
   if (!checks[name] || event.target.getAttribute("oninput")) {
     return;
@@ -828,16 +806,16 @@ function reviewform() {
   return problems;
 }
 
-// Submit runs the same checks one more time and only sends the form when nothing is wrong
-function checkall() {
+// Submit checks the form again before opening the thank-you page without any answers in the URL
+function checkall(form) {
   const problems = reviewform();
   if (problems > 0) {
-    return false;
+    return;
   }
-  // The name cookie and answers are saved one last time so we remember the patient next visit
+  // Save the name cookie and the five Remember Me fields before leaving the page
   savename();
   saveall();
-  return true;
+  window.location.assign(form.action);
 }
 
 // Clear and Start Over empties the review and every message, removes the saved answers, and hides Submit again
@@ -860,4 +838,4 @@ function startover() {
   }, 0);
 }
 
-/* End of file: homework4.js */
+/* End of homework4.js */

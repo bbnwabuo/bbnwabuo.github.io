@@ -2,9 +2,9 @@
 Program name: homework4.css
 Author: Brian Nwabuoku
 Date created: 11/23/2026
-Date last edited: 11/23/2026
-Version: 1.0
-Description: External style sheet for the Bayou City Family Health registration form, including the bars that stay on screen.
+Date last edited: 11/25/2026
+Version: 1.1
+Description: Styles the Bayou City Family Health registration form, its footer, and the bars that stay on screen.
 */
 
 /* Tag selector for the page background, font, and text color */
@@ -328,6 +328,33 @@ input[type="range"] {
   background-color: teal;
   color: white;
   font-weight: bold;
+}
+
+/* ID selector for the footer frame below the form and map */
+#footerframe {
+  display: block;
+  width: 100%;
+  height: 204px;
+  margin-top: 20px;
+  border: 0;
+}
+
+/* ID selector for the footer frame when the links or text wrap */
+@media (max-width: 420px) {
+  #footerframe {
+    height: 240px;
+  }
+}
+
+/* Class selector so the footer page doesn't inherit room for the fixed bar */
+.footerpage {
+  background-color: darkslategray;
+  padding-bottom: 0;
+}
+
+/* Class and ID selectors so the space above the footer stays outside the frame */
+.footerpage #footer {
+  margin-top: 0;
 }
 
 /* ID selector for the dark footer at the bottom of the page */
